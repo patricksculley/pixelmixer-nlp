@@ -6,7 +6,7 @@ class NerService():
         self.nlp = spacy.load('en_core_web_lg', disable=['tagger', 'parser', 'attribute_ruler', 'lemmatizer'])
 
     def process_text(self, text):
-        doc1 = self.nlp('Tesla to build a U.K. factory for $6 million')
+        doc1 = self.nlp(text)
         return self.show_ents(doc1)
     
 
