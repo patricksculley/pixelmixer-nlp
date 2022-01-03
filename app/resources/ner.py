@@ -9,4 +9,4 @@ async def get_ner(input: NERInput):
     ner_service = NerService()
     result = ner_service.process_text(input.text)
 
-    return {'result': result}
+    return result
