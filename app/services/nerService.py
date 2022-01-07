@@ -1,16 +1,16 @@
 import spacy
 from spacy.tokens import Span
+import logging
 
 class NerService():
     def __init__(self):
+        logging.info('Init NerService.')
         self.nlp = spacy.load('en_core_web_lg', disable=['tagger', 'parser', 'attribute_ruler', 'lemmatizer'])
 
     def process_text(self, text):
-        doc = self.nlp(text)
-        return self.create_entity_list(doc)
+        return self.generate_entity_list(self.nlp(text))
     
-
-    def create_entity_list(self, doc):
+    def generate_entity_list(self, doc):
         doc.ents = list(doc.ents)
         entity_list = []
 
@@ -23,5 +23,5 @@ class NerService():
                 }
                 entity_list.append(ent_obj)
         else:
-            print('No named entities found.')
+            logging.info('No named entities found.')
         return entity_list

@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  pixelmixer-nlp:
+    networks:
+      - pixelmixer-backplane
+    image: 031858794960.dkr.ecr.us-west-1.amazonaws.com/pixelmixer-nlp
+    logging:
+        driver: "awslogs"
+        options:
+           awslogs-region: "us-west-1"
+           awslogs-group: "pixelmixer-docker-logs-prod"
+           awslogs-stream: "pixelmixer-nlp"
+    ports:
+      - "9191:9191"
+    restart:
+      on-failure
+    
+networks:
+  pixelmixer-backplane:
+    name: pixelmixer-backplane
+    driver: bridge
